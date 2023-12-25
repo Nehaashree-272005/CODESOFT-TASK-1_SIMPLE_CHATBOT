@@ -1,0 +1,31 @@
+!pip install gradio
+import gradio as gr
+
+def simple_chatbot(user_input):
+    user_input = user_input.lower()
+
+    greetings = ['hello','Hello','hi','Hi', 'hey','Hey','Whatsapp', 'greetings']
+    farewells = ['bye', 'goodbye', 'see you later']
+    questions = ['how are you?', 'what is your name?', 'what can you do?', 'who created you?']
+    default_response = "I'm sorry, I don't understand that. Please ask something else."
+
+    if user_input in greetings:
+        return "Hello! How can I assist you today?"
+
+    elif user_input in farewells:
+        return "Goodbye! Have a great day."
+
+    elif user_input in questions:
+        if user_input == 'how are you?':
+            return "I'm just a chatbot, I don't have feelings, but thanks for asking!"
+        elif user_input == 'what is your name?':
+            return "I'm a Chatter."
+        elif user_input == 'what can you do?':
+            return "I can answer simple questions and have basic conversations."
+        elif user_input == 'who created you?':
+            return "I was created by a developer as a learning project."
+
+    else:
+        return default_response
+iface = gr.Interface(fn=simple_chatbot, inputs="text", outputs="text", title="Simple Chatbot")
+iface.launch()
